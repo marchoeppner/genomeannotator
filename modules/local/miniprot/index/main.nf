@@ -23,9 +23,9 @@ process MINIPROT_INDEX {
     miniprot -t${task.cpus} -d $index $genome
 
     cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            miniprot: \$(echo \$(minprot --version ))
-        END_VERSIONS
+    "${task.process}":
+        miniprot: \$(echo \$(minprot --version ))
+    END_VERSIONS
 
     """
 

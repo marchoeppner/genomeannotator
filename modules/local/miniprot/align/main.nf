@@ -12,21 +12,21 @@ process MINIPROT_ALIGN {
     path(index)
 
     output:
-    path("*.gff3")                             , emit: gff
+    tuple val(meta),path("*.aln") , emit: align
     path "versions.yml"           , emit: versions
 
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def gff = prefix + "-" + proteins.getBaseName() + ".gff3"
+    def align = prefix + "-" + proteins.getBaseName() + ".aln"
 
     """
-    miniprot -t${task.cpus} --gff $index $proteins > $gff
+    miniprot -ut${task.cpus} --gtf $index $proteins > $align
 
     cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            miniprot: \$(echo \$(minprot --version ))
-        END_VERSIONS
+    "${task.process}":
+        miniprot: \$(echo \$(minprot --version ))
+    END_VERSIONS
 
     """
 

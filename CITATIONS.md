@@ -10,6 +10,10 @@
 
 ## Pipeline tools
 
+- [Miniprot](https://pubmed.ncbi.nlm.nih.gov/36648328/)
+
+  > Li H, Protein-to-genome alignment with miniprot, Bioinformatics. 2023 Jan 1;39(1):btad014. doi: 10.1093/bioinformatics/btad014. PubMed PMID: 36648328
+  
 - [MultiQC](https://pubmed.ncbi.nlm.nih.gov/27312411/)
 
   > Ewels P, Magnusson M, Lundin S, Käller M. MultiQC: summarize analysis results for multiple tools and samples in a single report. Bioinformatics. 2016 Oct 1;32(19):3047-8. doi: 10.1093/bioinformatics/btw354. Epub 2016 Jun 16. PubMed PMID: 27312411; PubMed Central PMCID: PMC5039924.

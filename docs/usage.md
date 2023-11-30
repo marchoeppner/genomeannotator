@@ -1,8 +1,4 @@
-# nf-core/genomeannotator: Usage
-
-## :warning: Please read this documentation on the nf-core website: [https://nf-co.re/genomeannotator/usage](https://nf-co.re/genomeannotator/usage)
-
-> _Documentation of pipeline parameters is generated automatically from the pipeline schema and can no longer be found in markdown files._
+# genomeannotator: Usage
 
 ## Introduction
 
@@ -12,7 +8,7 @@ largely compatible with GMOD.
 
 Included in nf-core/genomeannotator are:
 
-- Protein alignments with SPALN
+- Protein alignments with SPALN (related species) and Miniprot (species-specific)
 - Transcript alignments with Minimap2
 - RNAseq alignments with STAR
 - De-novo transcriptome assembly (genome-guided) with Trinity
@@ -23,7 +19,7 @@ Included in nf-core/genomeannotator are:
 - Synteny alignments and annotation projection using Satsuma2 and Kraken
 - Various scripts to transform in- and outputs between the above steps
 
-![nf-core/genomeannotator schema](images/pipeline_schema.png)
+![genomeannotator schema](images/pipeline_schema.png)
 
 ## Recommended strategy
 
@@ -31,7 +27,7 @@ A typical annotation run will use tens of thousands of transcripts and/or tens o
 
 If available, adding related genomes and their reference annotations can help to further improve the resulting gene builds. We have had good experiences using [EnsEMBL](https://ftp.ensembl.org/pub/) as a source for this type of data.
 
-Finally, nf-core/genomeannotator will perform a mandatory repeat masking of the assembly. Consider providing a comprehensive library of known repeats to speed up this process (else, see below):
+Finally, genomeannotator will perform a mandatory repeat masking of the assembly. Consider providing a comprehensive library of known repeats to speed up this process (else, see below):
 
 ## Limitations
 

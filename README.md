@@ -1,3 +1,10 @@
+# Welcome to genomeannotator. 
+
+This pipeline was originally developed as part of the [nf-core](https://nf-co.re/) pipeline framework. It has since been decoupled from nf-core but still uses a lot of the standardized scaffolding and code structure, which we gratefully acknowledge. 
+Expect this repository to gradually remove many of the nf-core links to avoid any confusion and dead links. 
+
+For the most up-to-date documentation, see [here](docs/usage.md).
+
 # ![nf-core/genomeannotator](docs/images/nf-core-genomeannotator_logo_light.png#gh-light-mode-only) ![nf-core/genomeannotator](docs/images/nf-core-genomeannotator_logo_dark.png#gh-dark-mode-only)
 
 [![AWS CI](https://img.shields.io/badge/CI%20tests-full%20size-FF9900?labelColor=000000&logo=Amazon%20AWS)](https://nf-co.re/genomeannotator/results)[![Cite with Zenodo](http://img.shields.io/badge/DOI-10.5281/zenodo.XXXXXXX-1073c8?labelColor=000000)](https://doi.org/10.5281/zenodo.XXXXXXX)

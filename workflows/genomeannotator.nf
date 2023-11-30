@@ -54,19 +54,20 @@ ch_rfam_family = file("${workflow.projectDir}/assets/rfam/14.2/family.txt.gz", c
 // SUBWORKFLOW: Consisting of a mix of local and nf-core/modules
 //
 
-include { ASSEMBLY_PREPROCESS } from '../subworkflows/local/assembly_preprocess/main'
-include { REPEATMASKER } from '../subworkflows/local/repeatmasker/main'
+include { ASSEMBLY_PREPROCESS }                       from '../subworkflows/local/assembly_preprocess/main'
+include { REPEATMASKER }                              from '../subworkflows/local/repeatmasker/main'
 include { SPALN_ALIGN_PROTEIN ; SPALN_ALIGN_PROTEIN as SPALN_ALIGN_MODELS } from '../subworkflows/local/spaln_align_protein/main'
-include { RNASEQ_ALIGN } from '../subworkflows/local/rnaseq_align/main'
+include { RNASEQ_ALIGN }                              from '../subworkflows/local/rnaseq_align/main'
 include { MINIMAP_ALIGN_TRANSCRIPTS ; MINIMAP_ALIGN_TRANSCRIPTS as TRINITY_ALIGN_TRANSCRIPTS } from '../subworkflows/local/minimap_align_transcripts/main'
-include { AUGUSTUS_PIPELINE } from '../subworkflows/local/augustus_pipeline/main'
-include { PASA_PIPELINE } from '../subworkflows/local/pasa_pipeline/main'
-include { GENOME_ALIGN } from '../subworkflows/local/genome_align/main'
-include { EVM } from '../subworkflows/local/evm/main'
+include { AUGUSTUS_PIPELINE }                         from '../subworkflows/local/augustus_pipeline/main'
+include { PASA_PIPELINE }                             from '../subworkflows/local/pasa_pipeline/main'
+include { GENOME_ALIGN }                              from '../subworkflows/local/genome_align/main'
+include { EVM }                                       from '../subworkflows/local/evm/main'
 include { FASTA_PREPROCESS as TRANSCRIPT_PREPROCESS } from '../subworkflows/local/fasta_preprocess/main'
-include { BUSCO_QC } from '../subworkflows/local/busco_qc/main'
-include { NCRNA } from '../subworkflows/local/ncrna/main'
-include { EGGNOG_MAPPER } from '../subworkflows/local/eggnog_mapper/main'
+include { BUSCO_QC }                                  from '../subworkflows/local/busco_qc/main'
+include { NCRNA }                                     from '../subworkflows/local/ncrna/main'
+include { EGGNOG_MAPPER }                             from '../subworkflows/local/eggnog_mapper/main'
+include { MINIPROT_ALIGN_PROTEIN }                    from '../subworkflows/local/miniprot_align_proteins/main'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -78,15 +79,15 @@ include { EGGNOG_MAPPER } from '../subworkflows/local/eggnog_mapper/main'
 // MODULE: Installed directly from nf-core/modules
 //
 
-include { SAMTOOLS_MERGE } from '../modules/local/samtools/merge/main'
-include { MULTIQC } from '../modules/nf-core/multiqc/main'
-include { CUSTOM_DUMPSOFTWAREVERSIONS } from '../modules/nf-core/custom/dumpsoftwareversions/main'
-include { TRINITY_GENOMEGUIDED } from '../modules/local/trinity/genomeguided/main'
-include { AUGUSTUS_BAM2HINTS } from '../modules/local/augustus/bam2hints/main'
-include { AUGUSTUS_FINDCONFIG } from '../modules/local/augustus/findconfig/main'
-include { REPEATMODELER } from '../modules/local/repeatmodeler'
-include { AUGUSTUS_STAGECONFIG } from '../modules/local/augustus/stageconfig/main'
-include { AUGUSTUS_TRAINING } from '../modules/local/augustus/training/main'
+include { SAMTOOLS_MERGE }                           from '../modules/local/samtools/merge/main'
+include { MULTIQC }                                  from '../modules/nf-core/multiqc/main'
+include { CUSTOM_DUMPSOFTWAREVERSIONS }              from '../modules/nf-core/custom/dumpsoftwareversions/main'
+include { TRINITY_GENOMEGUIDED }                     from '../modules/local/trinity/genomeguided/main'
+include { AUGUSTUS_BAM2HINTS }                       from '../modules/local/augustus/bam2hints/main'
+include { AUGUSTUS_FINDCONFIG }                      from '../modules/local/augustus/findconfig/main'
+include { REPEATMODELER }                            from '../modules/local/repeatmodeler'
+include { AUGUSTUS_STAGECONFIG }                     from '../modules/local/augustus/stageconfig/main'
+include { AUGUSTUS_TRAINING }                        from '../modules/local/augustus/training/main'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -219,15 +220,14 @@ workflow GENOMEANNOTATOR {
     //
     // SUBWORKFLOW: Align species-specific proteins
     if (params.proteins_targeted) {
-        SPALN_ALIGN_MODELS(
+        MINIPROT_ALIGN_PROTEIN(
             ASSEMBLY_PREPROCESS.out.fasta,
             ch_proteins_targeted,
-            params.spaln_protein_id_targeted
         )
-        ch_versions = ch_versions.mix(SPALN_ALIGN_MODELS.out.versions)
-        ch_hints = ch_hints.mix(SPALN_ALIGN_MODELS.out.hints)
-        ch_genes_gff = ch_genes_gff.mix(SPALN_ALIGN_MODELS.out.gff)
-        ch_training_genes = SPALN_ALIGN_MODELS.out.gff_training
+        ch_versions = ch_versions.mix(MINIPROT_ALIGN_PROTEIN.out.versions)
+        ch_hints = ch_hints.mix(MINIPROT_ALIGN_PROTEIN.out.hints)
+        ch_genes_gff = ch_genes_gff.mix(MINIPROT_ALIGN_PROTEIN.out.gff)
+        ch_training_genes = MINIPROT_ALIGN_PROTEIN.out.gff_training
     }
 
     //
