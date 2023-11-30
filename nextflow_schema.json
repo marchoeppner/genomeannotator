@@ -386,6 +386,18 @@
                     "default": 10,
                     "fa_icon": "fas fa-wrench",
                     "description": "Number of EVM jobs per chunk."
+                },
+                "evm_segment_size": {
+                    "type": "integer",
+                    "default": 2000000,
+                    "fa_icon": "fas fa-wrench",
+                    "description": "The segment size to use in EVM in bp."
+                },
+                "evm_overlap_size": {
+                    "type": "integer",
+                    "default": 200000,
+                    "fa_icon": "fas fa-wrench",
+                    "description": "The overlap size to use in EVM in bp."
                 }
             }
         },

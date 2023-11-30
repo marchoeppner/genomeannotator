@@ -49,6 +49,10 @@ may cause unforseen issues. If so, please open a ticket on github and we can try
 --assembly '[path to assembly.fasta]'
 ```
 
+## Command line options
+
+See [command line options](cli.md)
+
 ## Evidence(s)
 
 The pipeline requires one of several types of annotation evidences to guide the gene finding process. Valid options are:

@@ -36,7 +36,7 @@ process EVIDENCEMODELER_PARTITION {
     """
     /usr/local/opt/evidencemodeler-1.1.1/EvmUtils/partition_EVM_inputs.pl --genome $genome \
     --gene_predictions $genes \
-    --segmentSize 2000000 --overlapSize 200000 --partition_listing $partitions \
+    --segmentSize ${params.evm_segment_size} --overlapSize ${params.evm_overlap_size} --partition_listing $partitions \
     $protein_options $transcript_options
 
     /usr/local/opt/evidencemodeler-1.1.1/EvmUtils/write_EVM_commands.pl --genome $genome \
