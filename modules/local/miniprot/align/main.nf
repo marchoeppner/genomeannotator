@@ -25,7 +25,7 @@ process MINIPROT_ALIGN {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        miniprot: \$(echo \$(minpirot --version ))
+        miniprot: \$(echo \$(miniprot --version ))
     END_VERSIONS
 
     """
