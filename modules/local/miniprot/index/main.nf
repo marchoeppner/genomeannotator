@@ -24,7 +24,7 @@ process MINIPROT_INDEX {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        miniprot: \$(echo \$(minprot --version ))
+        miniprot: \$(echo \$(miniprot --version ))
     END_VERSIONS
 
     """
